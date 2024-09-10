@@ -4,8 +4,9 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "./Notifications.sol";
 
-contract Escrow is ReentrancyGuard {
+contract Escrow is ReentrancyGuard, Notifications(msg.sender) {
   using SafeERC20 for IERC20;
   
   //events
@@ -18,7 +19,6 @@ contract Escrow is ReentrancyGuard {
 
 
   //errors  
-  error OnlyOwner();
   error NotAMember();
   error TransactionNotFound();
   error TransactionNotPending();
@@ -30,7 +30,6 @@ contract Escrow is ReentrancyGuard {
 
   address usdtAddress;
   address lskAddress;
-  address immutable OWNER;
 
   struct Transaction {
     string title;
@@ -117,6 +116,8 @@ contract Escrow is ReentrancyGuard {
     transactionCount = transactionId;
 
     emit TransactionCreated(transactionId, msg.sender, _initatorRole, _totalAmount, _feePayer);
+
+    addNotification(msg.sender, "A new transaction has been created.");
   }
 
   function getTransactions() external view returns (Transaction[] memory) {
