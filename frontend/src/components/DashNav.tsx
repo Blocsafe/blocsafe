@@ -3,6 +3,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 // import { NavLinks } from "@/lib/data";
 // import MemoLogo from "@/icons/Logo";
 // import SmileFace from "./Smile";
@@ -72,6 +74,7 @@ const DashHeader = () => {
               </div>
               <div className="flex items-center sm:space-x-3">
                 {/* Icons for connected wallets */}
+                <ConnectButton />
                 {/* <SmileFace /> */}
 
                 {/* <Button className="bg-transparent hover:bg-transparent border py-5 border-[#7F7F7F] rounded-2xl">
