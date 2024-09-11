@@ -23,7 +23,7 @@ export const Hero = () => {
 
       <div className="mt-5 flex w-full items-center justify-center">
         <Link
-          to={"#"}
+          to={"/dashboard"}
           className="flex font-bold w-fit border-b-2 pb-2 text-3xl items-center justify-center"
         >
           Get Started
